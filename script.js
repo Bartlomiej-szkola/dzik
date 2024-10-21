@@ -1,0 +1,1 @@
+const h1Liczba = document.getElementById('h1Liczba')
