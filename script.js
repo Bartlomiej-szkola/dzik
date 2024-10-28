@@ -89,7 +89,9 @@ function czasReakcji(){
 
 // Generowanie tabeli na końcu gry
 const tabela = document.getElementById("tabelaCzasyReakcji")
+let czyWygenerowano = false
 function generujTabeleCzasowReakcji(){
+    if(czyWygenerowano) return
     let iloscCzasow = 0
     let sumaCzasow = 0
     for (let numer in kliknieciaCzasReakcji) {
@@ -119,7 +121,7 @@ function generujTabeleCzasowReakcji(){
     poleSrednia.innerText = srednia
     tr.appendChild(poleSrednia)
     tabela.appendChild(tr)
-    
+    czyWygenerowano = true
 }
 
 function losowanie(zakres, zakresPominiecia){
