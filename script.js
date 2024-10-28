@@ -4,11 +4,36 @@ const start = Date.now()
 let ostatniaLiczba = Date.now()
 let czyNalezyKliknac = false
 let czyKlikniętoDzika = false
+let kliknieciaCzasReakcji = []
 
 function kolejnyNumer(){
     if(czyNalezyKliknac && !czyKlikniętoDzika){
-        alert("Nie kliknięto dzika")
+        // alert("Nie kliknięto dzika")
+        // clearInterval(numerInterval)
+    }
+    if(numer>9){
         clearInterval(numerInterval)
+        numerInterval = setInterval(kolejnyNumer, 1250)
+    }
+    if(numer>19){
+        clearInterval(numerInterval)
+        numerInterval = setInterval(kolejnyNumer, 1000)
+    }
+    if(numer>30){
+        clearInterval(numerInterval)
+        numerInterval = setInterval(kolejnyNumer, 900)
+    }
+    if(numer>50){
+        clearInterval(numerInterval)
+        numerInterval = setInterval(kolejnyNumer, 850)
+    }
+    if(numer>65){
+        clearInterval(numerInterval)
+        numerInterval = setInterval(kolejnyNumer, 800)
+    }
+    if(numer>80){
+        clearInterval(numerInterval)
+        numerInterval = setInterval(kolejnyNumer, 750)
     }
 
     numer++
@@ -17,18 +42,23 @@ function kolejnyNumer(){
     czyNalezyKliknac = czyMa7(numer)
     h1Liczba.innerHTML = numer
 }
-const numerInterval = setInterval(kolejnyNumer, 500)
+let numerInterval = setInterval(kolejnyNumer, 1500)
 
 function dzik(){
     const audio = new Audio('dzik1.wav');
     audio.play();
-    if(czyNalezyKliknac){
-        console.log(czasReakcji())
+    if(czyNalezyKliknac && !czyKlikniętoDzika){
+        let czasReakcjiLiczby = czasReakcji()
+        kliknieciaCzasReakcji.push(czasReakcjiLiczby)
+        console.log("Liczba " + numer + " czas reakcji: " + czasReakcjiLiczby)
         czyKlikniętoDzika = true
     }
+    else if(czyKlikniętoDzika){
+        console.log("Powtórnie kliknieto dzika dla liczby: " + numer)
+    }
     else{
-        alert("W tym numerze nie nalezalo kliknac dzika")
-        clearInterval(numerInterval)
+        // alert("W tym numerze nie nalezalo kliknac dzika")
+        // clearInterval(numerInterval)
     }
 }
 
