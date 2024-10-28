@@ -78,6 +78,51 @@ function czasReakcji(){
     return delta
 }
 
+// Dodawanie każdego pojedyńczego rzędu po każdym kliknięciu
+// const tabela = document.getElementById("tabelaCzasyReakcji")
+// function dodajDoTabeli(){
+//     let tr = document.createElement("tr")
+//     let td = document.createElement("td")
+//     td.innerText = "tekst"
+//     tr.appendChild(td)
+//     tabela.appendChild(tr)
+// }
+
+// Generowanie tabeli na końcu gry
+const tabela = document.getElementById("tabelaCzasyReakcji")
+function generujTabeleCzasowReakcji(){
+    let iloscCzasow = 0
+    let sumaCzasow = 0
+    for (let numer in kliknieciaCzasReakcji) {
+        if (kliknieciaCzasReakcji.hasOwnProperty(numer)) {
+            iloscCzasow++
+            sumaCzasow+=kliknieciaCzasReakcji[numer]
+
+            console.log(`${numer}: ${kliknieciaCzasReakcji[numer]}`);
+
+            let tr = document.createElement("tr")
+            let poleNumer = document.createElement("td")
+            poleNumer.innerText = numer
+
+            let poleCzasReakcji = document.createElement("td")
+            poleCzasReakcji.innerText = kliknieciaCzasReakcji[numer]
+            
+            tr.appendChild(poleNumer)
+            tr.appendChild(poleCzasReakcji)
+            tabela.appendChild(tr)
+        }
+    }
+    
+    let srednia = sumaCzasow / iloscCzasow
+    let tr = document.createElement("tr")
+    let poleSrednia = document.createElement("td")
+    poleSrednia.id = "srednia"
+    poleSrednia.innerText = srednia
+    tr.appendChild(poleSrednia)
+    tabela.appendChild(tr)
+    
+}
+
 // setInterval(function() {
 //     var delta = Date.now() - start;
 
