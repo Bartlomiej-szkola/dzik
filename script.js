@@ -26,15 +26,23 @@ function kolejnyNumer(){
     if(numer>50){
         clearInterval(numerInterval)
         numerInterval = setInterval(kolejnyNumer, 850)
+
+        let los = Math.floor(Math.random()*10)
+        let los2 = Math.floor(Math.random()*10)
+        console.log(los, los2)
+        if(los==los2){
+            numer+=1
+            console.log("Pominieto numer o 1")
+        }
     }
     if(numer>65){
         clearInterval(numerInterval)
         numerInterval = setInterval(kolejnyNumer, 800)
     }
-    if(numer>80){
-        clearInterval(numerInterval)
-        numerInterval = setInterval(kolejnyNumer, 750)
-    }
+    // if(numer>80){
+    //     clearInterval(numerInterval)
+    //     numerInterval = setInterval(kolejnyNumer, 750)
+    // }
 
     numer++
     ostatniaLiczba = Date.now();
@@ -122,6 +130,8 @@ function generujTabeleCzasowReakcji(){
     tabela.appendChild(tr)
     
 }
+
+
 
 // setInterval(function() {
 //     var delta = Date.now() - start;
