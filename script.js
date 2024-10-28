@@ -8,41 +8,40 @@ let kliknieciaCzasReakcji = {}
 
 function kolejnyNumer(){
     if(czyNalezyKliknac && !czyKlikniętoDzika){
-        // alert("Nie kliknięto dzika")
-        // clearInterval(numerInterval)
+        alert("Nie kliknięto dzika")
+        clearInterval(numerInterval)
+        generujTabeleCzasowReakcji()
     }
-    if(numer>9){
+    else if(numer>9){
         clearInterval(numerInterval)
         numerInterval = setInterval(kolejnyNumer, 1250)
     }
-    if(numer>19){
+    else if(numer>19){
         clearInterval(numerInterval)
         numerInterval = setInterval(kolejnyNumer, 1000)
     }
-    if(numer>30){
+    else if(numer>30){
         clearInterval(numerInterval)
         numerInterval = setInterval(kolejnyNumer, 900)
     }
-    if(numer>50){
+    else if(numer>50){
         clearInterval(numerInterval)
         numerInterval = setInterval(kolejnyNumer, 850)
 
-        let los = Math.floor(Math.random()*10)
-        let los2 = Math.floor(Math.random()*10)
-        console.log(los, los2)
-        if(los==los2){
-            numer+=1
-            console.log("Pominieto numer o 1")
-        }
+        losowanie(10, 1)
     }
-    if(numer>65){
+    else if(numer>65){
         clearInterval(numerInterval)
         numerInterval = setInterval(kolejnyNumer, 800)
+
+        losowanie(8, 2)
     }
-    // if(numer>80){
-    //     clearInterval(numerInterval)
-    //     numerInterval = setInterval(kolejnyNumer, 750)
-    // }
+    else if(numer>80){
+        clearInterval(numerInterval)
+        numerInterval = setInterval(kolejnyNumer, 750)
+
+        losowanie(7, 3)
+    }
 
     numer++
     ostatniaLiczba = Date.now();
@@ -65,8 +64,9 @@ function dzik(){
         console.log("Powtórnie kliknieto dzika dla liczby: " + numer)
     }
     else{
-        // alert("W tym numerze nie nalezalo kliknac dzika")
-        // clearInterval(numerInterval)
+        alert("W tym numerze nie nalezalo kliknac dzika")
+        clearInterval(numerInterval)
+        generujTabeleCzasowReakcji()
     }
 }
 
@@ -86,15 +86,6 @@ function czasReakcji(){
     return delta
 }
 
-// Dodawanie każdego pojedyńczego rzędu po każdym kliknięciu
-// const tabela = document.getElementById("tabelaCzasyReakcji")
-// function dodajDoTabeli(){
-//     let tr = document.createElement("tr")
-//     let td = document.createElement("td")
-//     td.innerText = "tekst"
-//     tr.appendChild(td)
-//     tabela.appendChild(tr)
-// }
 
 // Generowanie tabeli na końcu gry
 const tabela = document.getElementById("tabelaCzasyReakcji")
@@ -131,7 +122,16 @@ function generujTabeleCzasowReakcji(){
     
 }
 
-
+function losowanie(zakres, zakresPominiecia){
+    let los = Math.floor(Math.random()*zakres)
+    let los2 = Math.floor(Math.random()*zakres)
+    console.log(los, los2)
+    if(los==los2){
+        let pominiecie = Math.floor(Math.random()*zakresPominiecia) + 1
+        numer += pominiecie
+        console.log("Pominieto numer o " + pominiecie)
+    }
+}
 
 // setInterval(function() {
 //     var delta = Date.now() - start;
