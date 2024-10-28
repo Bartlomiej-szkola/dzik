@@ -35,3 +35,11 @@ img:active, .scale-down-center {
     }
   }
   
+
+
+
+#tabelaCzasyReakcji{
+  border-color: red;
+  border-radius: 4px;
+  border-style: dashed;
+}

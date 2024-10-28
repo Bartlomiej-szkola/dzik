@@ -4,7 +4,7 @@ const start = Date.now()
 let ostatniaLiczba = Date.now()
 let czyNalezyKliknac = false
 let czyKlikniętoDzika = false
-let kliknieciaCzasReakcji = []
+let kliknieciaCzasReakcji = {}
 
 function kolejnyNumer(){
     if(czyNalezyKliknac && !czyKlikniętoDzika){
@@ -49,7 +49,7 @@ function dzik(){
     audio.play();
     if(czyNalezyKliknac && !czyKlikniętoDzika){
         let czasReakcjiLiczby = czasReakcji()
-        kliknieciaCzasReakcji.push(czasReakcjiLiczby)
+        kliknieciaCzasReakcji[numer] = czasReakcjiLiczby
         console.log("Liczba " + numer + " czas reakcji: " + czasReakcjiLiczby)
         czyKlikniętoDzika = true
     }
@@ -72,7 +72,6 @@ function czyMa7(numer){
     }
     return false
 }
-
 
 function czasReakcji(){
     let delta = Date.now() - ostatniaLiczba;
